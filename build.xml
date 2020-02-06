@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ExampleProject" default="run" basedir=".">
+  <target name="run" description="run example">
+	<antcall target="example"/>
+	<antcall target="example-nested"/>
+  </target>
+  
+  <target name="example">
+    <taskdef name="example" 
+    	classname="net.sbs.ant.example.taskdefs.ExampleTask" 
+    	classpath="${basedir}/target/ExampleCustomAnt-1.0.jar" />
+    <example name="Goofy" />
+  </target>
+  
+  <target name="example-nested">
+    <taskdef name="example" 
+    	classname="net.sbs.ant.example.taskdefs.ExampleNestedTask" 
+    	classpath="${basedir}/target/ExampleCustomAnt-1.0.jar" />
+  	<typedef name="message" 
+  		classname="net.sbs.ant.example.typedefs.Message" 
+  		classpath="${basedir}/target/ExampleCustomAnt-1.0.jar" />
+  	
+    <example name="Goofy Nested">
+    	<message text="Found 1st entry"/>
+    	<message text="Found 2nd entry"/>
+    </example>
+  
+  </target>
+</project>
